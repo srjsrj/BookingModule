@@ -1,0 +1,15 @@
+* {
+	box-sizing: border-box;
+}
+
+$fa-font-path: 'fonts';
+
+@import '_normalize'; // Normalize
+
+@import '_fonts'; // Fonts (custom webfonts)
+
+// Custom styles
+@import '_custom';
+
+// Sticky footer
+@import '_stickyfooter';

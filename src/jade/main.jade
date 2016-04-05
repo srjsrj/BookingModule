@@ -1,0 +1,90 @@
+-var hotelName = 'Park Plaza Victoria Amsterdam';
+-var hotelLocation = 'Damrak 1-5, The Netherlands';
+-var hotelRating = 4;
+
+doctype
+html( lang="en" )
+    head
+        include _head.jade
+
+    body.b-body
+        .b-wrap
+            section.b-hotel-card
+                header.b-hotel-card__header
+                    h1.b-hotel-card__title= hotelName
+                    
+                    .b-rating
+                        +helperRepeat(hotelRating)
+                            span.b-rating__star ★
+
+                    h2.b-hotel-card__location
+                        =hotelLocation
+                        a(href="#").b-hotel-card__location__map-link Show on map
+                
+                nav.b-hotel-card__nav
+                    ul.b-navpanel
+                        -var tabs = [{name: 'Overview', selected: true}, {name:'Rooms and Rates', selected: false}, {name:'Facilities', selected: false}, {name:'Reviews', selected: false}, {name:'Map', selected: false}, {name:'Similar Hotels', selected:false}]
+                        each tab in tabs
+                            -var className = tab.selected ? 'b-navpanel__item b-navpanel__item_active' : 'b-navpanel__item'
+                            li(class=className)
+                                a(href="#").b-navpanel__link= tab.name
+                
+                main.b-hotel-card__content
+                    .b-hotel-card__figure-holder
+                        figure.b-thumb
+                            img(src="https://media-cdn.tripadvisor.com/media/photo-s/07/30/32/e2/de-l-europe-amsterdam.jpg", alt="")
+
+                    .b-hotel-card__form-holder
+                        .b-form
+                            h3.b-form__name Select dates to view all prices
+                            .b-form__row
+                                .b-form__control
+                                    input(type="date")
+                                .b-form__control
+                                    input(type="date")
+                            .b-form__row
+                                .b-form__control
+                                    select
+                                        option 2 guest, 1 room
+                            button(type="submit").b-btn Compare all prices
+
+                        .b-partner-list
+                            h4.b-partner-list__title The best prices are offered by
+                            ul.b-partner-list__content
+                                +helperRepeat(3)
+                                    li.b-partner-list__item
+                                        img(src="http://tomorrowproducts.com/wp-content/uploads/2016/02/booking-com-logo-png-booking.com-logo2.jpg", alt="")
+                            p and 4 other websites
+
+                    .b-hotel-card__meta-holder
+                        .b-review
+                            .b-review__bubble
+                                mark Fabulous, 8.8
+                                | Very trendy
+                                br
+                                | Good-sized beds
+                                br
+                                | Fast check-in
+                            .b-review__counter
+                                a.b-review__counter__text(href="#") 3,593 Guest Reviews
+
+                        .b-facility-list
+                            .b-facility-list__item
+                                +fIcon('wifi')
+                                |Free Wifi
+                            .b-facility-list__item
+                                +fIcon('beer')
+                                |Free beer
+                            .b-facility-list__item
+                                +fIcon('html5')
+                                |HTML5 & CSS3
+                            .b-facility-list__item
+                                +fIcon('bug')
+                                |No bugs
+                            .b-facility-list__item
+                                +fIcon('anchor')
+                                |Free anchor
+                            a.b-facility-list__link(href="#") View all Facilities
+
+                        .b-embed-map
+                            img(src="http://d32ogoqmya1dw8.cloudfront.net/images/sp/library/google_earth/google_maps_hello_world.jpg", alt="map")

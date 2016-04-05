@@ -1,0 +1,19 @@
+html,
+body {
+	height: 100%;
+}
+
+.b-site-container {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.b-content {
+	flex: 1;
+}
+
+@media all and (-ms-high-contrast:none) {
+	.b-site-container, .b-content { display: block; }
+	*::-ms-backdrop, .b-site-container, .b-content { display: block; }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "BookingModule",
+  "version": "1.0.0",
+  "authors": [
+    "srjsrj <sergeyappleyard@gmail.com>"
+  ],
+  "description": "",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.4.0"
+  }
+}

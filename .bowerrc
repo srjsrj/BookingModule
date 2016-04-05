@@ -1,0 +1,7 @@
+{
+  "directory": "bower_components",
+  "analytics": false,
+  "timeout": 60000,
+  "strict-ssl": false,
+  "https-proxy": ""
+}
