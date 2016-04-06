@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="bookingApp">
   <head>
     <title>Booking module</title>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
   </head>
   <body class="b-body">
     <div class="b-wrap">
-      <section class="b-hotel-card">
+      <section ng-controller="hotelCardController as hotelCard" class="b-hotel-card">
         <header class="b-hotel-card__header">
           <h1 class="b-hotel-card__title">Park Plaza Victoria Amsterdam</h1>
           <div class="b-rating"><span class="b-rating__star">★</span><span class="b-rating__star">★</span><span class="b-rating__star">★</span><span class="b-rating__star">★</span>
@@ -30,30 +30,35 @@
         </nav>
         <main class="b-hotel-card__content">
           <div class="b-hotel-card__figure-holder">
-            <figure class="b-thumb"><img src="https://media-cdn.tripadvisor.com/media/photo-s/07/30/32/e2/de-l-europe-amsterdam.jpg" alt=""></figure>
+            <figure style="background-image:url(https://media-cdn.tripadvisor.com/media/photo-s/07/30/32/e2/de-l-europe-amsterdam.jpg)" class="b-thumb"></figure>
           </div>
           <div class="b-hotel-card__form-holder">
-            <div class="b-form">
+            <form ng-submit="processForm()" class="b-form">
               <h3 class="b-form__name">Select dates to view all prices</h3>
+              <h4 class="b-hotel-card__subtitle">Park Plaza Amsterdam</h4>
               <div class="b-form__row">
                 <div class="b-form__control">
-                  <input type="date">
+                  <div class="b-datepicker">
+                    <input date-time view="date" min-view="date" ng-model="dates.today" id="pickerMinDate" format="DD.MM.YYYY" ng-disabled="disabledForm">
+                  </div>
                 </div>
                 <div class="b-form__control">
-                  <input type="date">
+                  <div class="b-datepicker">
+                    <input date-time view="date" min-view="date" ng-model="dates.today" id="pickerMaxDate" format="DD.MM.YYYY" ng-disabled="disabledForm">
+                  </div>
                 </div>
               </div>
               <div class="b-form__row">
                 <div class="b-form__control">
-                  <select>
+                  <select ng-disabled="disabledForm">
                     <option>2 guest, 1 room</option>
                   </select>
                 </div>
               </div>
-              <button type="submit" class="b-btn">Compare all prices</button>
-            </div>
+              <button type="submit" ng-class="{'b-btn_busy': disabledForm}" ng-disabled="disabledForm" class="b-btn">{{ !disabledForm ? 'Compare all prices' : 'Loading'}}<span class="b-btn__loader"></span></button>
+            </form>
             <div class="b-partner-list">
-              <h4 class="b-partner-list__title">The best prices are offered by</h4>
+              <h5 class="b-partner-list__title">The best prices are offered by</h5>
               <ul class="b-partner-list__content">
                     <li class="b-partner-list__item"><img src="http://tomorrowproducts.com/wp-content/uploads/2016/02/booking-com-logo-png-booking.com-logo2.jpg" alt=""></li>
                     <li class="b-partner-list__item"><img src="http://tomorrowproducts.com/wp-content/uploads/2016/02/booking-com-logo-png-booking.com-logo2.jpg" alt=""></li>
@@ -74,17 +79,20 @@
               </div>
               <div class="b-facility-list__item"><span class="fa fa-beer"></span>Free beer
               </div>
-              <div class="b-facility-list__item"><span class="fa fa-html5"></span>HTML5 & CSS3
+              <div class="b-facility-list__item"><span class="fa fa-html5"></span>HTML5
               </div>
               <div class="b-facility-list__item"><span class="fa fa-bug"></span>No bugs
               </div>
               <div class="b-facility-list__item"><span class="fa fa-anchor"></span>Free anchor
               </div><a href="#" class="b-facility-list__link">View all Facilities</a>
             </div>
-            <div class="b-embed-map"><img src="http://d32ogoqmya1dw8.cloudfront.net/images/sp/library/google_earth/google_maps_hello_world.jpg" alt="map"></div>
+            <div class="b-embed-map"></div>
           </div>
         </main>
       </section>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

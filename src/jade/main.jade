@@ -3,13 +3,13 @@
 -var hotelRating = 4;
 
 doctype
-html( lang="en" )
+html( lang="en", ng-app="bookingApp" )
     head
         include _head.jade
 
     body.b-body
         .b-wrap
-            section.b-hotel-card
+            section.b-hotel-card(ng-controller="hotelCardController as hotelCard")
                 header.b-hotel-card__header
                     h1.b-hotel-card__title= hotelName
                     
@@ -31,25 +31,28 @@ html( lang="en" )
                 
                 main.b-hotel-card__content
                     .b-hotel-card__figure-holder
-                        figure.b-thumb
-                            img(src="https://media-cdn.tripadvisor.com/media/photo-s/07/30/32/e2/de-l-europe-amsterdam.jpg", alt="")
+                        figure.b-thumb(style="background-image:url(https://media-cdn.tripadvisor.com/media/photo-s/07/30/32/e2/de-l-europe-amsterdam.jpg)")
 
                     .b-hotel-card__form-holder
-                        .b-form
+                        form.b-form(ng-submit="processForm()")
                             h3.b-form__name Select dates to view all prices
+                            h4.b-hotel-card__subtitle Park Plaza Amsterdam
                             .b-form__row
                                 .b-form__control
-                                    input(type="date")
+                                    .b-datepicker
+                                        input(date-time, view="date", min-view="date", ng-model="dates.today", id="pickerMinDate", format="DD.MM.YYYY", ng-disabled="disabledForm")
                                 .b-form__control
-                                    input(type="date")
+                                    .b-datepicker
+                                        input(date-time, view="date", min-view="date", ng-model="dates.today", id="pickerMaxDate", format="DD.MM.YYYY", ng-disabled="disabledForm")
                             .b-form__row
                                 .b-form__control
-                                    select
+                                    select(ng-disabled="disabledForm")
                                         option 2 guest, 1 room
-                            button(type="submit").b-btn Compare all prices
+                            button(type="submit", ng-class="{'b-btn_busy': disabledForm}", ng-disabled="disabledForm").b-btn {{ !disabledForm ? 'Compare all prices' : 'Loading'}}
+                                span.b-btn__loader
 
                         .b-partner-list
-                            h4.b-partner-list__title The best prices are offered by
+                            h5.b-partner-list__title The best prices are offered by
                             ul.b-partner-list__content
                                 +helperRepeat(3)
                                     li.b-partner-list__item
@@ -77,7 +80,7 @@ html( lang="en" )
                                 |Free beer
                             .b-facility-list__item
                                 +fIcon('html5')
-                                |HTML5 & CSS3
+                                |HTML5
                             .b-facility-list__item
                                 +fIcon('bug')
                                 |No bugs
@@ -87,4 +90,4 @@ html( lang="en" )
                             a.b-facility-list__link(href="#") View all Facilities
 
                         .b-embed-map
-                            img(src="http://d32ogoqmya1dw8.cloudfront.net/images/sp/library/google_earth/google_maps_hello_world.jpg", alt="map")
+        include _scripts.jade

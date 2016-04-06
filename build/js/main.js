@@ -1,11 +1,19 @@
 'use strict';
 
-/* global $ */
+(function() {
+    var bookingApp = angular.module('bookingApp', ['datePicker']);
 
-var _initialize = {
-    init: function() {
-    	asdfokmsfoaopkfspo
-    }
-};
+    bookingApp.controller('hotelCardController', function($scope, $timeout) {
+        $scope.disabledForm = false;
 
-$(document).ready(_initialize.init);
+        $scope.processForm = function() {
+            $scope.disabledForm = true;
+
+            $timeout(function() {
+                alert('Thanks for looking my app! Waiting for a feedback. Best, Sergey');
+                $scope.disabledForm = false;
+            }, 1500);
+        };
+    });
+
+}());

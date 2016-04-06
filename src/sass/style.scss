@@ -4,9 +4,9 @@
 
 $fa-font-path: 'fonts';
 
-@import '_normalize'; // Normalize
-
 @import '_fonts'; // Fonts (custom webfonts)
+@import '_normalize'; // Normalize
+@import '_dp'; // Datepicker
 
 // Custom styles
 @import '_custom';

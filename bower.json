@@ -17,6 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "font-awesome": "~4.4.0"
+    "font-awesome": "~4.4.0",
+    "angular-datepicker": "~2.0.3",
+    "moment": "momentjs#~2.12.0"
   }
 }
